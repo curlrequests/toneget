@@ -1,0 +1,71 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "ToneGet",
+    "version": "2.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "window": {
+        "close": true
+      },
+      "dialog": {
+        "save": true
+      },
+      "fs": {
+        "writeFile": true,
+        "scope": ["$DOWNLOAD/*", "$DOCUMENT/*", "$DESKTOP/*"]
+      },
+      "http": {
+        "request": true,
+        "scope": ["https://tonal.auth0.com/*", "https://api.tonal.com/*"]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.toneget.app",
+      "targets": "all",
+      "macOS": {
+        "minimumSystemVersion": "10.15"
+      },
+      "dmg": {
+        "appPosition": { "x": 180, "y": 170 },
+        "applicationFolderPosition": { "x": 480, "y": 170 },
+        "windowSize": { "width": 660, "height": 400 }
+      },
+      "windows": {
+        "webviewInstallMode": {
+          "type": "downloadBootstrapper"
+        }
+      }
+    },
+    "security": {
+      "csp": "default-src 'self'; connect-src https://tonal.auth0.com https://api.tonal.com; style-src 'self' 'unsafe-inline'"
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 700,
+        "width": 500,
+        "resizable": true,
+        "title": "ToneGet",
+        "center": true,
+        "minWidth": 400,
+        "minHeight": 600
+      }
+    ]
+  }
+}
